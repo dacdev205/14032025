@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Day - Dành cho người yêu</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      #login-container,
+      #main-container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        border-style: dashed;
+        margin: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+      }
+      #login-container {
+        display: block;
+        margin: 0 20px;
+      }
+      #main-container {
+        display: none;
+      }
+      .login-container-wrap {
+        display: flex;
+      }
+      .login-container-wrap > .login-img > img {
+        width: 200px;
+        height: auto;
+      }
+      input[type="password"] {
+        padding: 10px;
+        font-size: 1em;
+        width: 80%;
+        margin: 10px 0;
+        border: 1px solid #ff6b6b;
+        border-radius: 5px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #ff4444;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #ff6666;
+      }
+      img {
+        max-width: 100%;
+        border-radius: 10px;
+        margin: 10px 0;
+      }
+      .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff4444;
+        transform: rotate(45deg);
+        animation: float 4s infinite;
+      }
+      .heart:before,
+      .heart:after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff4444;
+        border-radius: 50%;
+      }
+      .heart:before {
+        top: -10px;
+        left: 0;
+      }
+      .heart:after {
+        left: -10px;
+        top: 0;
+      }
+      .keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        max-width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .keypad-button {
+        padding: 15px;
+        background-color: #ff6666;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2em;
+      }
+      .keypad-button:hover {
+        background-color: #ff8888;
+      }
+      .clear-button {
+        background-color: #ff4444;
+        grid-column: span 3;
+      }
+      input[type="password"] {
+        padding: 10px;
+        font-size: 1.2em;
+        width: 80%;
+        margin: 10px 0;
+        border: 1px solid #ff6b6b;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .fade-out {
+        opacity: 0;
+      }
+      .fade-in {
+        opacity: 1;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(45deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(45deg);
+          opacity: 0;
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .login-container-wrap {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          gap: 5px;
+          justify-content: center;
+        }
+
+        .keypad {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 5px;
+          max-width: 150px;
+        }
+
+        .keypad-button {
+          padding: 10px;
+          font-size: 0.9em;
+        }
+
+        input[type="password"] {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login-container">
+      <h1>Chào người đẹpp</h1>
+      <p>Nhập mật khẩu để i oi coii❤️</p>
+      <div class="login-container-wrap">
+        <div class="login-img">
+          <img src="./assets/1.jpg" alt="" />
+        </div>
+        <div>
+          <input
+            type="password"
+            id="password"
+            placeholder="Mật khẩu"
+            readonly
+          />
+          <div class="keypad">
+            <button class="keypad-button" onclick="enterNumber(1)">1</button>
+            <button class="keypad-button" onclick="enterNumber(2)">2</button>
+            <button class="keypad-button" onclick="enterNumber(3)">3</button>
+            <button class="keypad-button" onclick="enterNumber(4)">4</button>
+            <button class="keypad-button" onclick="enterNumber(5)">5</button>
+            <button class="keypad-button" onclick="enterNumber(6)">6</button>
+            <button class="keypad-button" onclick="enterNumber(7)">7</button>
+            <button class="keypad-button" onclick="enterNumber(8)">8</button>
+            <button class="keypad-button" onclick="enterNumber(9)">9</button>
+            <button class="keypad-button" onclick="clearPassword()">Xóa</button>
+            <button class="keypad-button" onclick="enterNumber(0)">0</button>
+            <button class="keypad-button" onclick="checkPassword()">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-container">
+      <h1>Chúc mừng Valentine, em bé Châuu!</h1>
+      <img
+        id="memory-image"
+        src="./assets/1.jpg"
+        alt="Ảnh kỷ niệm"
+        onclick="changeImage()"
+        style="
+          height: 70%;
+          cursor: pointer;
+          transition: opacity 0.5s ease-in-out;
+        "
+      />
+
+      <p>
+        Anh chỉ muốn nói rằng: Anh rất yêu bé Châuu! Cảm ơn vì đã luôn ở bên
+        anh. Chúc chúng ta mãi hạnh phúc nhaa
+      </p>
+    </div>
+
+    <script>
+      const correctPassword = "1403";
+      let enteredPassword = "";
+
+      function enterNumber(num) {
+        if (enteredPassword.length < 4) {
+          enteredPassword += num;
+          document.getElementById("password").value = "*".repeat(
+            enteredPassword.length
+          );
+        }
+      }
+
+      function clearPassword() {
+        enteredPassword = "";
+        document.getElementById("password").value = "";
+      }
+
+      function checkPassword() {
+        if (enteredPassword === correctPassword) {
+          document.getElementById("login-container").style.display = "none";
+          document.getElementById("main-container").style.display = "block";
+          createHearts();
+        } else {
+          alert("Mật khẩu sai rồi! Thử lại nhé!");
+          clearPassword();
+        }
+      }
+
+      function createHearts() {
+        setInterval(() => {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.style.left = Math.random() * 100 + "vw";
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 4000);
+        }, 300);
+      }
+      const images = [
+        "./assets/1.jpg",
+        "./assets/2.jpg",
+        "./assets/3.jpg",
+        "./assets/4.jpg",
+      ];
+
+      let currentImageIndex = 0;
+      const imageElement = document.getElementById("memory-image");
+
+      function changeImage() {
+        imageElement.classList.add("fade-out");
+
+        setTimeout(() => {
+          currentImageIndex = (currentImageIndex + 1) % images.length;
+          imageElement.src = images[currentImageIndex];
+
+          imageElement.classList.remove("fade-out");
+          imageElement.classList.add("fade-in");
+        }, 500);
+      }
+    </script>
+  </body>
+</html>
